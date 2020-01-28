@@ -18,7 +18,7 @@ type Worker struct {
 
 func (it *Worker) Stop() { it.stop <- struct{}{} }
 func (it *Worker) Done() { <-it.done }
-func (it *Worker) DoneWithContext(ctx context.Context) {
+func (it *Worker) DoneContext(ctx context.Context) {
 	select {
 	case <-it.done:
 	case <-ctx.Done():
@@ -30,7 +30,7 @@ func (it *Worker) Start() {
 	it.start(ctx)
 }
 
-func (it *Worker) StartWithCtx(ctx context.Context) {
+func (it *Worker) StartContext(ctx context.Context) {
 	it.start(ctx)
 }
 
