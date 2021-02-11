@@ -1,0 +1,6 @@
+github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575 h1:kHaBemcxl8o/pQ5VM1c8PVE1PubbNx3mjUr09OqWGCs=
+github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575/go.mod h1:9d6lWj8KzO/fd/NrVaLscBKmPigpZpn5YawRPw+e3Yo=
+github.com/go-x-pkg/bufpool v0.0.1 h1:Bz+eypL3Grng7Qi1I7x8mDoIGIWsdze2oEEB3kxmsJA=
+github.com/go-x-pkg/bufpool v0.0.1/go.mod h1:F3wwkqomuJL/dbj6JEeTyvAQzJwMYf5QlTQOjCQhwcw=
+github.com/go-x-pkg/log v0.0.4 h1:/9NEOTvBsYbWHQQbBlZX3hz1D3ozjpc+GxWqjiQJnFQ=
+github.com/go-x-pkg/log v0.0.4/go.mod h1:NrZhiuizQKoD8xSMD1/Sx7knYX2kwBt0IGbCgn7+W6o=
