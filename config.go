@@ -8,7 +8,7 @@ import (
 
 type Config struct {
 	fnPeriod func() time.Duration
-	fnLog    func(log.Level, string)
+	fnLog    func(log.Level, string, ...interface{})
 }
 
 func (it *Config) defaultize() {
@@ -18,7 +18,7 @@ func (it *Config) defaultize() {
 
 type Arg func(*Config)
 
-func FnLog(v func(log.Level, string)) Arg {
+func FnLog(v func(log.Level, string, ...interface{})) Arg {
 	return func(cfg *Config) { cfg.fnLog = v }
 }
 
