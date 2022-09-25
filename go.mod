@@ -1,6 +1,6 @@
 module github.com/go-x-pkg/memstats
 
-go 1.13
+go 1.19
 
 require (
   github.com/go-x-pkg/bufpool v0.0.1
