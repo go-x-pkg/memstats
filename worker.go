@@ -8,6 +8,7 @@ import (
 
 	"github.com/go-x-pkg/bufpool"
 	"github.com/go-x-pkg/log"
+	"go.uber.org/zap"
 )
 
 type Worker struct {
@@ -27,14 +28,14 @@ func (it *Worker) DoneContext(ctx context.Context) {
 
 func (it *Worker) Start() {
 	ctx := context.Background()
-	it.start(ctx)
+	it.startMonitor(ctx)
 }
 
 func (it *Worker) StartContext(ctx context.Context) {
-	it.start(ctx)
+	it.startMonitor(ctx)
 }
 
-func (it *Worker) start(ctx context.Context) {
+func (it *Worker) startMonitor(ctx context.Context) {
 	if ctx == nil { // parent-context
 		ctx = context.TODO()
 	}
@@ -73,6 +74,18 @@ func (it *Worker) Perform() {
 	var memStats runtime.MemStats
 
 	runtime.ReadMemStats(&memStats)
+
+	if it.cfg.loggerType == ZapLogger {
+		it.cfg.fnLog(log.Info, "memstat statistics",
+			zap.Int("gorutines", runtime.NumGoroutine()),
+			zap.Uint32("numGC", memStats.NumGC),
+			zap.Uint64("alloc", memStats.Alloc),
+			zap.Uint64("mallocs", memStats.Mallocs),
+			zap.Uint64("frees", memStats.Frees),
+			zap.Uint64("heapAlloc", memStats.HeapAlloc),
+			zap.Uint64("stackInuse", memStats.StackInuse))
+		return
+	}
 
 	buf := bufpool.NewBuf()
 	defer buf.Release()
